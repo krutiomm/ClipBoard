@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:clipboard" Opacity="0.9" Background="White"
         mc:Ignorable="d" x:Name="main" WindowStyle="None" AllowsTransparency="True"
-        Title="ClipBoard" MinHeight="80" Width="400" SizeToContent="Height" Deactivated="MainWindow_OnDeactivated">
+        Title="ClipBoard" MinHeight="80" MaxHeight="400" Width="400" SizeToContent="Height" Deactivated="MainWindow_OnDeactivated">
     <Grid Margin="0" Background="Transparent" KeyboardNavigation.TabNavigation="Cycle">
         <Grid.Resources>
             <ResourceDictionary>
@@ -28,23 +28,24 @@
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="auto" MaxHeight="350"/>
+            <!-- <RowDefinition Height="25"/> -->
         </Grid.RowDefinitions>
         <StackPanel Height="25" Background="DarkGray" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" Orientation="Horizontal">
             <!-- <TextBlock Height="3" Background="Green"/> -->
             <Image Source="clipboard.ico"/>
-            <TextBlock Text="Pika" FontSize="18" Background="DarkGray" Height="25" Width="auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <TextBlock Text="Pika" FontSize="18" Background="DarkGray" Height="25" Width="auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0"/>
+            <TextBox  Width="400" x:Name="textBox" TextChanged="SearchBoxBase_OnTextChanged" 
+                     KeyUp="TextBox_OnKeyUp"  />
         </StackPanel>
         <DataGrid x:Name="dataGrid" Grid.Row="1" Background="Transparent"
                       HorizontalAlignment="Left" AutoGenerateColumns="False" HeadersVisibility="None"
                       RowHeight="50"  RowHeaderWidth="0" CanUserAddRows="False" VerticalScrollBarVisibility="Auto"
-                      IsReadOnly="True" GotFocus="DataGrid_OnGotFocus" SelectedIndex="0">
+                      IsReadOnly="True" GotFocus="DataGrid_OnGotFocus" SelectedIndex="0" MaxHeight="350">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="400" Binding="{Binding Value}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox Grid.Row="2" Width="400" x:Name="textBox" TextChanged="SearchBoxBase_OnTextChanged" 
-                 KeyUp="TextBox_OnKeyUp"/>
+
     </Grid>
 </Window>
