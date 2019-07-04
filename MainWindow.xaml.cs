@@ -278,6 +278,7 @@ namespace clipboard
                     ContextMenu = new System.Windows.Forms.ContextMenu()
                 };
                 notifyIcon.ContextMenu.MenuItems.Add("显示主窗口", OnSystemTray);
+                notifyIcon.ContextMenu.MenuItems.Add("清空缓存", OnSystemTray);
 
                 notifyIcon.ContextMenu.MenuItems.Add(new MenuItem("开机启动", OnSystemTray) { Checked = IsStart });
 
@@ -308,12 +309,24 @@ namespace clipboard
                  
                 SetAutoStartConfig(IsStart);
             }
+
+            if (text == "清空缓存")
+            {
+                ClearCache();
+            }
+
             if (text == "退出")
             {
                 notifyIcon.Visible = false;
                 WriteToFile();
                 Environment.Exit(0);
             }
+        }
+
+        public void ClearCache()
+        {
+            clipBoardManager.ClipBoardSource.Clear();
+            dataGrid.ItemsSource = clipBoardManager.ClipBoardSource;
         }
 
         private void SetAutoStartConfig(bool isStart)
