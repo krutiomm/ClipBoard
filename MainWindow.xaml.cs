@@ -237,10 +237,7 @@ namespace clipboard
         /// </summary>
         public void ActiveWindow()
         {
-            ClipUnit.POINT ptr = new ClipUnit.POINT();
-            ClipUnit.GetCursorPos(out ptr);
-            this.Top = ptr.Y + 10;
-            this.Left = ptr.X + 10;
+            SetPosition();
             if (!this.IsActive)
             {
                 if (this.WindowState == WindowState.Minimized)
@@ -261,6 +258,35 @@ namespace clipboard
                     }));
                 });
             }
+        }
+
+
+        private void SetPosition()
+        {
+            ClipUnit.POINT ptr = new ClipUnit.POINT();
+            ClipUnit.GetCursorPos(out ptr);
+            this.Top = ptr.Y + 10;
+            this.Left = ptr.X + 10;
+            double width = SystemParameters.PrimaryScreenWidth;
+            double height = SystemParameters.PrimaryScreenHeight;
+            if (Top + 400 > height)
+            {
+                Top = height - 400;
+            }
+            else if (Top < 0)
+            {
+                Top = 0;
+            }
+
+            if (Left + 400 > width)
+            {
+                Left = width - 400;
+            }
+            else if (Left < 0)
+            {
+                Left = 0;
+            }
+
         }
 
         /// <summary>
