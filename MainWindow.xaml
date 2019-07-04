@@ -41,7 +41,8 @@
         <DataGrid x:Name="dataGrid" Grid.Row="1" Background="Transparent"
                       HorizontalAlignment="Left" AutoGenerateColumns="False" HeadersVisibility="None"
                       RowHeight="50"  RowHeaderWidth="0" CanUserAddRows="False" VerticalScrollBarVisibility="Auto"
-                      IsReadOnly="True" GotFocus="DataGrid_OnGotFocus" SelectedIndex="0" MaxHeight="350">
+                      IsReadOnly="True" GotFocus="DataGrid_OnGotFocus" SelectedIndex="0" MaxHeight="350"
+                      MouseDoubleClick="DataGrid_OnMouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="400" Binding="{Binding Value}"/>
             </DataGrid.Columns>

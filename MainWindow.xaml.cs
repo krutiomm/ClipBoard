@@ -156,6 +156,8 @@ namespace clipboard
                 cell.IsTabStop = false;
                 cell.KeyDown += new System.Windows.Input.KeyEventHandler(cell_KeyDown);
             }
+
+            textBox.Focus();
         }
 
         void cell_KeyDown(object sender, KeyEventArgs e)
@@ -424,6 +426,11 @@ namespace clipboard
 
                 dataGrid.ItemsSource = clipBoardManager.ClipBoardSource;
             }
+        }
+
+        private void DataGrid_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DealEnter();
         }
     }
 
